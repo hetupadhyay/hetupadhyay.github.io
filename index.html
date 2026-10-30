@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Het Upadhyay</title>
+<meta name="description" content="Het Upadhyay builds backend systems that hold up under attack. Computer Engineering student and intern at Adjudo AI, Ahmedabad.">
+<meta property="og:title" content="Het Upadhyay">
+<meta property="og:description" content="Backend and security engineering. Computer Engineering student, intern at Adjudo AI.">
+<meta property="og:image" content="https://avatars.githubusercontent.com/u/175001548?v=4">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="https://avatars.githubusercontent.com/u/175001548?v=4">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#ffffff;
+  --bg-alt:#f5f5f7;
+  --tile:#ffffff;
+  --text:#1d1d1f;
+  --text-2:#6e6e73;
+  --line:#d2d2d7;
+  --blue:#0071e3;
+  --link:#0066cc;
+  --nav:rgba(255,255,255,.72);
+  --hl:rgba(255,255,255,.6);
+  --ease:cubic-bezier(.23,1,.32,1);
+  color-scheme:light dark;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#000000; --bg-alt:#101012; --tile:#1d1d1f; --text:#f5f5f7; --text-2:#86868b;
+    --line:#424245; --blue:#0071e3; --link:#2997ff; --nav:rgba(22,22,23,.72); --hl:rgba(255,255,255,.08);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#000000; --bg-alt:#101012; --tile:#1d1d1f; --text:#f5f5f7; --text-2:#86868b;
+  --line:#424245; --blue:#0071e3; --link:#2997ff; --nav:rgba(22,22,23,.72); --hl:rgba(255,255,255,.08);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:56px;-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Inter","Segoe UI",system-ui,sans-serif;
+  font-size:1.0625rem;line-height:1.47;letter-spacing:-.022em;
+  -webkit-font-smoothing:antialiased;font-optical-sizing:auto;
+}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1024px;margin:0 auto;padding:0 22px}
+.narrow{max-width:760px}
+.skip{position:absolute;left:-999px;top:8px;background:var(--bg);color:var(--text);padding:8px 12px;z-index:20}
+.skip:focus{left:8px}
+
+/* nav: translucent material, content scrolls beneath */
+.nav{position:sticky;top:0;z-index:10;background:var(--nav);
+  -webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);
+  border-bottom:1px solid color-mix(in srgb,var(--line) 60%,transparent)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:52px}
+.nav .me{color:var(--text);font-weight:600;font-size:1.0625rem;letter-spacing:-.02em}
+.nav ul{display:flex;gap:28px;list-style:none}
+.nav ul a{color:var(--text);opacity:.8;font-size:.8125rem;letter-spacing:-.01em}
+.nav ul a:hover{opacity:1;text-decoration:none}
+@media (prefers-reduced-transparency:reduce){.nav{background:var(--bg);-webkit-backdrop-filter:none;backdrop-filter:none}}
+
+/* hero */
+.hero{text-align:center;padding:96px 0 104px}
+.avatar{width:128px;height:128px;border-radius:50%;object-fit:cover;display:block;margin:0 auto 28px}
+.hero h1{font-size:clamp(3rem,8vw,5.5rem);line-height:1.04;font-weight:700;letter-spacing:-.035em}
+.tagline{font-size:clamp(1.5rem,3.2vw,2.25rem);line-height:1.15;font-weight:600;letter-spacing:-.025em;margin-top:10px;color:var(--text)}
+.intro{color:var(--text-2);font-size:clamp(1.0625rem,1.6vw,1.3125rem);line-height:1.4;max-width:34em;margin:20px auto 0;letter-spacing:-.016em}
+.ctas{display:flex;justify-content:center;align-items:center;gap:12px;flex-wrap:wrap;margin-top:36px}
+/* buttons with depth: lift on hover, press into the page on click, spring back on release */
+.btn{--lift:0 1px 2px rgba(0,0,0,.08),0 4px 12px -4px var(--glow);--glow:rgba(0,0,0,.18);
+  display:inline-flex;align-items:center;justify-content:center;height:46px;padding:0 24px;border-radius:980px;
+  font-weight:500;font-size:1.0625rem;letter-spacing:-.016em;cursor:pointer;-webkit-tap-highlight-color:transparent;
+  background:var(--tile);color:var(--text);border:1px solid var(--line);
+  box-shadow:inset 0 1px 0 var(--hl),var(--lift);
+  transition:transform 380ms cubic-bezier(.34,1.56,.64,1),box-shadow 380ms cubic-bezier(.23,1,.32,1),background-color 200ms ease}
+.btn:hover{text-decoration:none}
+.btn.primary{background:var(--blue);color:#fff;border-color:transparent;--glow:rgba(0,113,227,.55);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.22),var(--lift)}
+@media (hover:hover) and (pointer:fine){
+  .btn:hover{transform:translateY(-2px);--lift:0 2px 4px rgba(0,0,0,.06),0 12px 24px -8px var(--glow)}
+  .btn.primary:hover{background:#0077ed}
+}
+.btn:active{transform:translateY(1px) scale(.96);
+  box-shadow:inset 0 2px 5px rgba(0,0,0,.16),0 1px 1px rgba(0,0,0,.06);
+  transition-duration:90ms,90ms,200ms;transition-timing-function:ease-out}
+.btn.primary:active{box-shadow:inset 0 2px 6px rgba(0,0,0,.28),0 1px 1px rgba(0,0,0,.06)}
+.more{font-size:1.0625rem}
+.more::after{content:"";display:inline-block;width:.42em;height:.42em;border:solid currentColor;border-width:1.6px 1.6px 0 0;transform:translateY(-.08em) rotate(45deg);margin-left:.38em}
+.status{display:inline-flex;align-items:center;gap:8px;margin-top:28px;font-size:.875rem;color:var(--text-2)}
+.status::before{content:"";width:8px;height:8px;border-radius:50%;background:#30d158}
+
+/* one orchestrated entrance, nothing else moves on its own */
+@media (prefers-reduced-motion:no-preference){
+  .hero > .wrap > *{animation:rise 900ms var(--ease) both}
+  .hero > .wrap > :nth-child(2){animation-delay:60ms}
+  .hero > .wrap > :nth-child(3){animation-delay:120ms}
+  .hero > .wrap > :nth-child(4){animation-delay:180ms}
+  .hero > .wrap > :nth-child(5){animation-delay:240ms}
+  .hero > .wrap > :nth-child(6){animation-delay:300ms}
+  /* transform only: content stays visible even if the animation never runs (crawlers, hidden tabs) */
+  @keyframes rise{from{transform:translateY(12px)}}
+}
+
+/* sections */
+.section{padding:104px 0}
+.section.alt{background:var(--bg-alt)}
+.section h2{font-size:clamp(2.5rem,5.5vw,3.5rem);line-height:1.07;font-weight:700;letter-spacing:-.03em;text-align:center}
+.section .lead{color:var(--text-2);font-size:clamp(1.0625rem,1.6vw,1.3125rem);line-height:1.4;text-align:center;max-width:32em;margin:14px auto 56px}
+
+/* tiles: size carries hierarchy, so the lead project is the widest */
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.tile{background:var(--tile);border-radius:28px;padding:44px 40px;display:flex;flex-direction:column}
+.tile.wide{grid-column:1 / -1;padding:56px}
+.tile .kicker{font-size:.875rem;font-weight:600;color:var(--text-2);letter-spacing:-.01em}
+.tile h3{font-size:clamp(1.6rem,2.6vw,2rem);line-height:1.12;font-weight:700;letter-spacing:-.028em;margin-top:6px}
+.tile.wide h3{font-size:clamp(2rem,3.6vw,2.75rem)}
+.tile p{color:var(--text-2);margin-top:14px;max-width:38em}
+.tile .stack{font-size:.9375rem;color:var(--text);margin-top:18px}
+.tile .more{margin-top:auto;padding-top:24px}
+.tile.quiet{background:transparent;border:1px dashed var(--line)}
+.tile.soon{padding:36px 40px}
+.tile.soon h3{font-size:clamp(1.4rem,2.2vw,1.75rem)}
+.tile .links{display:flex;gap:28px;flex-wrap:wrap;margin-top:auto;padding-top:24px}
+.tile .links .more{margin:0;padding:0}
+
+/* experience */
+.roles{list-style:none;margin:0 auto}
+.roles li{display:grid;grid-template-columns:1fr auto;gap:4px 24px;padding:26px 0;border-top:1px solid var(--line)}
+.roles li:last-child{border-bottom:1px solid var(--line)}
+.roles h3{font-size:1.3125rem;font-weight:600;letter-spacing:-.02em;line-height:1.25}
+.roles .org{color:var(--text-2);grid-column:1}
+.roles time{grid-column:2;grid-row:1;color:var(--text-2);font-size:.9375rem;white-space:nowrap;font-variant-numeric:tabular-nums;padding-top:3px}
+.roles .note{grid-column:1 / -1;margin-top:8px;max-width:40em}
+
+/* skills */
+.skillset{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.skillset .tile{padding:36px 32px}
+.skillset h3{font-size:1.3125rem}
+.skillset ul{list-style:none;margin-top:14px}
+.skillset li{padding:7px 0;border-top:1px solid var(--line);color:var(--text)}
+.skillset li:first-child{border-top:0}
+
+/* certifications */
+.certs{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:0 40px}
+.certs li{padding:16px 0;border-top:1px solid var(--line)}
+.certs span{display:block;color:var(--text-2);font-size:.9375rem;margin-top:2px}
+
+/* contact */
+.contact{text-align:center}
+.contact .mail{display:inline-block;font-size:clamp(1.5rem,4vw,2.5rem);font-weight:600;letter-spacing:-.025em;margin-top:8px;word-break:break-word}
+.contact .ctas{margin-top:28px}
+
+footer{background:var(--bg-alt);color:var(--text-2);font-size:.75rem;letter-spacing:-.005em;border-top:1px solid var(--line)}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-top:18px;padding-bottom:max(18px,env(safe-area-inset-bottom))}
+
+/* compact widths */
+@media (max-width:820px){
+  .nav ul li:not(.keep){display:none}
+  .hero{padding:64px 0 72px}
+  .avatar{width:104px;height:104px}
+  .section{padding:72px 0}
+  .section .lead{margin-bottom:36px}
+  .tiles,.skillset,.certs{grid-template-columns:1fr}
+  .tile,.tile.wide{padding:32px 26px;border-radius:22px}
+  .roles li{grid-template-columns:1fr}
+  .roles time{grid-column:1;grid-row:auto;padding-top:0}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:box-shadow 150ms ease,background-color 150ms ease}.btn:hover,.btn:active{transform:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<nav class="nav" aria-label="Primary">
+  <div class="wrap">
+    <a class="me" href="#top">Het Upadhyay</a>
+    <ul>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li class="keep"><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main id="main">
+  <header class="hero" id="top">
+    <div class="wrap">
+      <img class="avatar" src="https://avatars.githubusercontent.com/u/175001548?v=4" alt="Het Upadhyay" width="128" height="128">
+      <h1>Het Upadhyay</h1>
+      <p class="tagline">Backend systems that hold up under attack.</p>
+      <p class="intro">Computer Engineering student at the Institute of Advanced Research and intern at Adjudo AI. I work across application security, backend engineering and applied AI.</p>
+      <div class="ctas">
+        <a class="btn primary" href="mailto:hetnupadhyay@gmail.com">Email me</a>
+        <a class="btn" href="https://github.com/hetupadhyay">GitHub</a>
+        <a class="btn" href="https://www.linkedin.com/in/hetupadhyay/">LinkedIn</a>
+        <a class="btn" href="https://instagram.com/hetnupadhyay">Instagram</a>
+      </div>
+      <p class="status">Ahmedabad, India. Open to internships.</p>
+    </div>
+  </header>
+
+  <section class="section alt" id="work" aria-labelledby="work-h">
+    <div class="wrap">
+      <h2 id="work-h">Work.</h2>
+      <p class="lead">Things I've built, and the ones still being built.</p>
+      <div class="tiles">
+        <article class="tile wide">
+          <span class="kicker">Backend and security</span>
+          <h3>Sentinel</h3>
+          <p>Scores job postings, links, messages and impersonation attempts for fraud risk, then shows which signals drove each score. Independent detectors sit behind a FastAPI service with JWT auth, Redis rate limiting and audit logging.</p>
+          <p class="stack">Python, FastAPI, PostgreSQL, Redis, Next.js, Docker</p>
+          <a class="more" href="https://github.com/hetupadhyay/Sentinel">View on GitHub</a>
+        </article>
+        <article class="tile wide">
+          <span class="kicker">Cryptography, interactive web</span>
+          <h3>Cryptex</h3>
+          <p>Ten classical ciphers, animated one letter at a time, and the attacks that break them without the key. Includes a working Enigma machine, a daily intercept to crack, eight historical missions, and optional accounts with Google, GitHub and Apple sign-in.</p>
+          <p class="stack">JavaScript, HTML, CSS, Node serverless API, PostgreSQL, Playwright</p>
+          <div class="links"><a class="more" href="https://cryptexciphers.vercel.app">Visit the site</a><a class="more" href="https://github.com/hetupadhyay/cryptex">View on GitHub</a></div>
+        </article>
+        <article class="tile">
+          <span class="kicker">Offensive security</span>
+          <h3>Network security assessment</h3>
+          <p>Reconnaissance, service enumeration and packet analysis against a Windows target in an isolated lab, ending in a man-in-the-middle demonstration.</p>
+          <p class="stack">Kali Linux, Nmap, Bettercap, Wireshark</p>
+        </article>
+        <article class="tile">
+          <span class="kicker">Build in progress</span>
+          <h3>STUD</h3>
+          <p>Currently being built in a private repository. It goes public when it ships.</p>
+        </article>
+        <article class="tile quiet wide soon">
+          <span class="kicker">Coming soon</span>
+          <h3>More on the way</h3>
+          <p>More projects across full-stack products, AI and security tooling are in private repositories until they ship.</p>
+          <a class="more" href="https://github.com/hetupadhyay">Follow on GitHub</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="experience" aria-labelledby="xp-h">
+    <div class="wrap narrow">
+      <h2 id="xp-h">Experience.</h2>
+      <p class="lead">Engineering, leadership and community work.</p>
+      <ol class="roles">
+        <li>
+          <h3>Intern</h3>
+          <time>Sep 2026 – Present</time>
+          <p class="org">Adjudo AI, Ahmedabad</p>
+          <p class="note">Explainable AI for health-insurance claim decisions, used by hospitals, TPAs and insurers.</p>
+        </li>
+        <li>
+          <h3>Community Associate</h3>
+          <time>Aug 2025 – Present</time>
+          <p class="org">Turning Point Community, Ahmedabad</p>
+        </li>
+        <li>
+          <h3>Junior Manager, Outgoing Global Talent</h3>
+          <time>Jan – Aug 2025</time>
+          <p class="org">AIESEC in Ahmedabad</p>
+          <p class="note">Counselled 15+ students on international internships, hit about 95% of monthly targets, and wrote the department's 45-page outreach strategy.</p>
+        </li>
+        <li>
+          <h3>Secretary, Cyber Club</h3>
+          <time>Jul 2024 – Aug 2025</time>
+          <p class="org">Institute of Advanced Research, Gandhinagar</p>
+          <p class="note">Ran security workshops and awareness sessions across the university and mentored juniors for competitions.</p>
+        </li>
+        <li>
+          <h3>University Liaison</h3>
+          <time>Jun – Dec 2024</time>
+          <p class="org">Techfest, IIT Bombay</p>
+          <p class="note">Represented the university to the Techfest organising committee and drove participation in national competitions.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section alt" id="skills" aria-labelledby="skills-h">
+    <div class="wrap">
+      <h2 id="skills-h">Skills.</h2>
+      <p class="lead">B.Tech in Computer Engineering, CGPA 8.6. Preparing for Microsoft's Azure Security Engineer certification.</p>
+      <div class="skillset">
+        <div class="tile">
+          <h3>Backend</h3>
+          <ul><li>Python and C++</li><li>FastAPI and REST APIs</li><li>PostgreSQL and SQL</li><li>Redis</li><li>SQLAlchemy and Alembic</li></ul>
+        </div>
+        <div class="tile">
+          <h3>Security</h3>
+          <ul><li>Network security</li><li>Vulnerability assessment</li><li>Penetration testing</li><li>Nmap, Metasploit, Wireshark</li><li>Kali Linux and Bettercap</li></ul>
+        </div>
+        <div class="tile">
+          <h3>Frontend and ops</h3>
+          <ul><li>Next.js and React</li><li>TypeScript</li><li>Docker and Compose</li><li>Git</li><li>Linux</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="certs-h">
+    <div class="wrap narrow">
+      <h2 id="certs-h">Certifications.</h2>
+      <p class="lead">Security training from industry and government programmes.</p>
+      <ul class="certs">
+        <li>Google Cybersecurity Professional Certificate<span>Google</span></li>
+        <li>AI and ML Applications to Finance<span>GIFT International Fintech Innovation Hub, 2026</span></li>
+        <li>Cyber Security Training and Internship<span>Acmegrade, 2025</span></li>
+        <li>Cybercrime, Cyber Laws and Technology<span>Rashtriya Raksha University, 2025</span></li>
+        <li>FutureSkills Prime: Cybersecurity<span>NASSCOM, 2024</span></li>
+        <li>Ethical Hacking and Cybersecurity Essentials<span>Craw Security at IIT Bombay Techfest, 2024</span></li>
+        <li>Azure Security Engineer Associate<span>Microsoft, in progress</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section alt contact" id="contact" aria-labelledby="contact-h">
+    <div class="wrap">
+      <h2 id="contact-h">Let's talk.</h2>
+      <p class="lead">Hiring for a security or backend internship? Email is the fastest way to reach me.</p>
+      <a class="mail" href="mailto:hetnupadhyay@gmail.com">hetnupadhyay@gmail.com</a>
+      <div class="ctas">
+        <a class="btn" href="https://github.com/hetupadhyay">GitHub</a>
+        <a class="btn" href="https://www.linkedin.com/in/hetupadhyay/">LinkedIn</a>
+        <a class="btn" href="https://instagram.com/hetnupadhyay">Instagram</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Copyright © 2026 Het Upadhyay.</span>
+    <span>Ahmedabad, India</span>
+  </div>
+</footer>
+</body>
+</html>
